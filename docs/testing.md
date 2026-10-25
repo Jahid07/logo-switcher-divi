@@ -1,37 +1,29 @@
 # Testing Logo Switcher Divi
 
-## Environments
+[Demo setup and environment profiles](demo.md) describes the persistent websites, private dependency locations and reset behavior.
 
-- Development and Playwright: `.wp-env.json`, port 8900.
-- PHPUnit: `.wp-env.phpunit.json`, port 8901. Its database is disposable and separate from development.
-- Local overrides are ignored by Git. Keep premium dependencies under `.local/`, also ignored.
-- The default WordPress version is the latest stable version downloaded by wp-env. Use `core` in a local override to pin another release.
-- The default PHP runtime is 8.3. CI also exercises PHP 8.4. Legacy minimum-version declarations are inherited from the published baseline; this setup does not certify those older runtime combinations.
+## Checks
 
-## Commands
+- `composer lint:syntax`: syntax for project PHP, including fixture code.
+- `composer lint`: blocks increases in existing WordPress/PHPCompatibility findings. `composer lint:strict` lists outstanding findings; do not increase the baseline to hide debt.
+- `npm run test:php`: starts a separate WordPress PHPUnit environment, runs the integration suite, then stops it even on failure.
+- `npm run test:e2e`: resets the isolated E2E database, seeds the realistic website, runs Chromium tests, then stops the test site. Development data is preserved.
+- `npm run build`: checks version consistency and builds a production ZIP with no development or private assets.
 
-`composer lint:syntax` checks syntax. `composer lint` blocks increases in existing WordPress/PHPCompatibility findings. `composer lint:strict` shows all outstanding findings. Baseline updates require review and should normally reduce findings.
+Browser coverage includes real content navigation, loaded hero imagery, mobile layout/navigation and local contact submission, plus the plugin-specific scenarios. The store also exercises physical-product checkout and customer login; private scenarios are explicit premium tests.
 
-`npm run test:php` starts an isolated test environment, runs WordPress's PHPUnit integration suite, and stops the test environment even on failure.
+Exact WordPress, PHP, theme and plugin versions and fixture IDs are recorded in ignored `.cache/test-environment.json`. Variant reports use `-divi5` or `-subscriptions` suffixes. HTML reports live in `playwright-report/`; failure screenshots and traces are retained in `test-results/`. Each run replaces its browser report. CI uploads the public-profile results for PHP 8.3 and 8.4.
 
-`npm run env:start`, `npm run test:setup`, and `npm run test:e2e` run browser checks against disposable fixtures. The fixture setup changes only this repository's local Docker site. Reports are in `playwright-report/`; traces and screenshots are retained on failures.
+Private premium tests skip explicitly in a public checkout. `npm run test:e2e:integration` requires the private integration and fails if unavailable. Premium files are not uploaded to GitHub or provided to public CI.
 
-## Private integrations
+The default WordPress core follows wp-env's latest stable source and PHP defaults to 8.3. CI also tests PHP 8.4. Pin `core` in a profile-specific ignored override when checking another WordPress version. Local overrides for development, PHPUnit and E2E are separate. These checks do not certify the inherited legacy minimum-version declarations.
 
-Place your Divi folder in `.local/Divi/` and copy `.wp-env.override.example.json` to `.wp-env.override.json`. Start the environment again and run `npm run test:setup`. The local theme remains ignored by Git.
+## Community reports
 
-The setup command writes `.cache/test-environment.json` with exact WordPress, PHP, theme, and plugin versions. It is a local/CI artifact, not a compatibility claim. Missing premium integration tests are explicitly skipped in the public suite. `npm run test:e2e:integration` requires the premium integration and fails when it is unavailable.
+Test prereleases on staging and report the plugin version/commit, exact WordPress/PHP/dependency versions, native or builder header, classic or block checkout, reproduction steps, expected/actual behavior, and redacted logs. Keep community reports distinct from maintainer-verified results. Do not claim latest premium compatibility until it is actually tested.
 
-When using premium dependencies with PHPUnit, add the same local mappings to `.wp-env.phpunit.override.json` as appropriate; overrides are separate for the two environments.
+## Local validation — 2026-10-25
 
-## Community testing
+WordPress 7.1.3 / PHP 8.3.32: all 5 Chromium tests passed with Divi 4.27.9 and all 5 passed with Divi 5.17.0. Both runs used real native Divi headers and verified the alternate logo after scrolling, mobile navigation, journal content and contact submission. Earlier baseline validation also passed the PHPUnit dependency-notice regression test.
 
-People with newer Divi or WooCommerce Subscriptions versions can test a GitHub prerelease on staging and report: plugin version or commit, WordPress/PHP/dependency versions, classic or block checkout, reproduction steps, expected/actual result, and redacted logs. Community reports and maintainer-verified results should be recorded separately. Do not claim the latest Subscriptions version is supported before it has been verified.
-
-If you override the development port, set `WP_BASE_URL` to that site URL when running Playwright.
-
-## Recorded setup validation — 2026-10-25
-
-On WordPress 7.1.3 and PHP 8.3.32: 1 PHPUnit integration tests passed; 1 Chromium browser tests passed; 1 premium browser tests were skipped because the private dependency was unavailable. The active test theme was Twenty Twenty-Five. The coupon environment also had WooCommerce 11.2.1 active. This records the tested scenarios above; it does not certify untested Divi, Subscriptions, checkout, gateway, or legacy PHP combinations.
-
-Version consistency, production ZIP packaging, npm dependency audit, and the shared locked Composer dependency audit passed. Existing coding-standard findings are tracked in the baseline and remain follow-up work.
+Syntax, existing-finding baselines and production ZIP checks passed. All five persistent development sites retained their marker, home content, post/order counts, inquiry data and fixture manifest across the isolated browser resets. Repeating ordinary demo setup also preserved development data. Desktop/mobile screenshots were inspected. Public CI never certifies premium integrations.

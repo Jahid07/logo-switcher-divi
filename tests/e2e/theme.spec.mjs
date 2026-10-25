@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import { test, expect } from '@playwright/test';
 import { login, assertHealthy } from './helpers.mjs';
 
-const environment = () => JSON.parse(fs.readFileSync('.cache/test-environment.json', 'utf8'));
+const environment = () => JSON.parse(fs.readFileSync(process.env.DEMO_REPORT_PATH || '.cache/test-environment.json', 'utf8'));
 
 test('plugin loads safely with the current theme', async ({ page }) => {
   await login(page);
@@ -23,5 +23,5 @@ test('@premium Divi switches the configured logo on scroll', async ({ page }) =>
   await expect(page.locator('.main-logo img')).toBeVisible();
   await page.evaluate(() => window.scrollTo(0, 1000));
   await expect(page.locator('.second-logo img')).toBeVisible();
-  await expect(page.locator('.second-logo img')).toHaveAttribute('src', /plugin-test-logo/);
+  await expect(page.locator('.second-logo img')).toHaveAttribute('src', /harbor-compact/);
 });
