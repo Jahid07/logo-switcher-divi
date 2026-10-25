@@ -1,6 +1,6 @@
 === Logo Switcher Divi ===
 
-Contributors: Md. Jahidul Islam
+Contributors: md-jahidul-islam
 Tags: Divi Logo, Logo Switcher, Fixed Logo, Divi Scroll Logo, Divi Customize
 Requires at least: 5.0
 Tested up to: 6.8.2

@@ -100,7 +100,7 @@ register_deactivation_hook( __FILE__, 'deactivate_dls' );
  */
 if('Divi' !== get_option( 'template' ))
 {        
-    add_action( 'admin_notices', 'AdminNotice::template_notice' );
+    add_action( 'admin_notices', [AdminNotice::class, 'template_notice'] );
 
 }else{
     $divilogoswitcherAdmin = new Customizer();
