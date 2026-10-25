@@ -1,11 +1,11 @@
 === Logo Switcher Divi ===
 
 Contributors: Md. Jahidul Islam
-Tags: Divi logo switcher, switch divi logo, divi logo, divi theme, divi fixed navigation logo, switch logo of divi when scroll
-Requires at least: 4
-Tested up to: 5.2.4
+Tags: Divi Logo, Logo Switcher, Fixed Logo, Divi Scroll Logo, Divi Customize
+Requires at least: 5.0
+Tested up to: 6.8.2
 Requires PHP: 5.6
-Stable tag: 1.0.2
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,12 +16,27 @@ Divi logo switcher will add a new option in your Divi theme customizer> Header A
 
 > Requires
 > [Divi WordPress theme](https://www.elegantthemes.com/)
-> Tested up to Divi 4.0
+> Tested up to Divi 4.26.1
 
-Features
+= Features =
 1. Add an option to upload your logo at theme customizer 
 2. Work with divi logo height
 3. No coding required
+
+= Other Plugins by CoderPlus =
+
+**X Scroll To Top – Responsive**  
+Add a lightweight, customizable scroll-to-top button to your site.  
+🔗 [View Plugin](https://wordpress.org/plugins/x-scroll-to-top-responsive/)
+
+**Role‑Based Analytics for WooCommerce (Premium)**  
+Filter WooCommerce sales reports by WordPress user roles analyze order counts, product sales, coupon usage, downloads, and compare top customer groups with built‑in leaderboards.  
+🔗 [View on WooCommerce.com](https://woocommerce.com/products/role-based-analytics-woocommerce/)
+
+**Woo Subscription Trial Coupon**  
+Enable coupon discounts for trial periods in WooCommerce Subscriptions.  
+🔗 [View Plugin](https://wordpress.org/plugins/woo-subscription-trial-coupon/)
+
 
 == Installation ==
 Through Dashboard
@@ -57,13 +72,16 @@ No, it doesn't work without divi theme.
 4. Scroll down and check the new logo & publish customizer 
 5. This is the final version
 
-
- 
 == Changelog ==
-= 1.0.0 - May 25, 2019 =
-- initial release
-= 1.0.1 - July 26, 2019 =
-- Fix inline centred logo
+= 2.0.0 - July 13, 2024 =
+= Restruture plugin files and add autoload
+= Added language support pot file i18n
+= 1.0.3 - Octobor 26, 2019 =
+- Fix bug
 = 1.0.2 - Octobor 26, 2019 =
 - Improve code
+= 1.0.1 - July 26, 2019 =
+- Fix inline centred logo
+= 1.0.0 - May 25, 2019 =
+- initial release
 
