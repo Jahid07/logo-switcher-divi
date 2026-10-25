@@ -14,7 +14,7 @@
   },
   "testsEnvironment": false,
   "themes": [
-    "./tests/fixtures/demo-theme"
+    "./.local/divi-5/Divi"
   ],
   "mappings": {
     "wp-content/mu-plugins/workshop-demo.php": "./tests/fixtures/demo-loader.php"
