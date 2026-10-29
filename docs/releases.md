@@ -1,26 +1,10 @@
-# Release process
+# Releases
 
-WordPress.org SVN is the distribution repository. This GitHub repository is the development source after the recovered baseline is reviewed.
+1. Add `SVN_USERNAME` and `SVN_PASSWORD` under this repository’s Settings → Secrets and variables → Actions. Use your WordPress.org username and SVN-specific password.
+2. Develop locally, push a branch, and merge the reviewed PR into `master`.
+3. Before a new release, update the plugin header, internal version, `readme.txt` Stable tag/changelog, and npm version together. Use a version higher than the published version.
+4. Run `npm run check:release` and `npm run build`, plus checks relevant to the change. The manual **WordPress.org deployment preview** workflow prepares SVN changes without publishing or using secrets. An existing SVN tag is deliberately refused.
+5. Pull `master`, create and push the numeric `X.Y.Z` tag, then publish a stable GitHub release for that tag. **Publishing the GitHub release triggers WordPress.org deployment.** Pushing a tag alone, drafts, and prereleases do not.
+6. Check **Publish to WordPress.org** in Actions, confirm any WordPress.org release email, and verify the public download version.
 
-## Current state
-
-- Imported published version: 2.0.0.
-- WordPress.org deployment is disabled in `project.json`.
-- The GitHub workflow can build a dry-run package and collect Plugin Check findings. It does not commit to SVN.
-- Existing Plugin Check and coding-standard findings are technical debt, not a clean certification.
-
-## Prepare a future release
-
-1. Open a pull request with the change and its regression tests.
-2. Increment the plugin header, internal version constant, readme Stable tag, and changelog. Keep package.json in sync with the plugin version.
-3. Run syntax, coding-standard checks, PHPUnit, and browser tests. Record exact integration versions; a skipped premium test is unverified coverage.
-4. For subscription/checkout changes, obtain the needed WooCommerce Subscriptions test coverage before a stable release. Invite staging testers through a GitHub prerelease.
-5. Build the ZIP with `npm run build` and test installation and upgrade from the previous WordPress.org release using the built package. Check retained settings and migrations.
-6. Review Plugin Check findings and compatibility metadata. Fix release-blocking problems before publishing.
-7. Create a numeric Git tag and GitHub release for the reviewed commit after approval. Never reuse an existing release tag for changed code.
-
-## Enable WordPress.org delivery later
-
-After dry-run validation, add a reviewed deployment workflow restricted to stable release tags, pinned deployment actions, and a protected `wordpress-org` GitHub environment. Store the committer username and SVN-specific password in environment secrets, with account 2FA enabled. Verify the tag version and refuse to overwrite existing SVN tags. Deploy the tested production files to trunk and a new SVN tag, confirm the release if enabled, and verify the directory ZIP and update API after WordPress.org's processing/cooldown.
-
-The dry-run workflow is intentionally unable to publish. No credentials are needed for development or package review. Future activation of delivery is a separate explicit step.
+Keep listing icons, banners, and screenshots in `.wordpress-org/`; they sync to SVN `/assets/` with the release. Runtime plugin assets stay in `assets/`. The publisher checks matching versions and merged source, and refuses existing tags or downgrades. Never reuse a release tag.

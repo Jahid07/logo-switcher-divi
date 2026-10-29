@@ -45,7 +45,7 @@ jobs:
         run: |
           {
             echo '## Release review'
-            echo 'WordPress.org deployment is disabled. This workflow cannot publish.'
+            echo 'This dry run cannot publish. Publishing a stable GitHub release triggers the separate publisher.'
             echo "Plugin Check outcome: $PLUGIN_CHECK_OUTCOME"
             echo 'Review all findings and recorded integration coverage before a future stable release.'
           } >> "$GITHUB_STEP_SUMMARY"

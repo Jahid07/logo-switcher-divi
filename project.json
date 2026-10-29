@@ -5,5 +5,5 @@
   "port": 8900,
   "publishedBaseline": "2.0.0",
   "baselineDownload": "https://downloads.wordpress.org/plugin/logo-switcher-divi.2.0.0.zip",
-  "wordpressOrgDeploymentEnabled": false
+  "wordpressOrgDeploymentEnabled": true
 }
