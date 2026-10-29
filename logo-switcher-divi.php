@@ -10,7 +10,7 @@ Plugin URI: https://jahid.co/plugins
 Description: Divi Logo Switcher switch logo when after acrolling the page
 Author: Jahid
 Author URI: https://jahid.co
-Version: 2.0.0
+Version: 2.0.1
 License: GPLv2 or later
 Tags: switch divi logo, divi logo, divi theme, divi fixed navigation logo, switch logo of divi when scroll
 Text Domain: DiviLogoSwitcher
@@ -52,7 +52,7 @@ add_action('plugins_loaded', 'DiviLogoSwitcher_domain_load_function');
  * Start at version 1.0.0 
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'DLS_VERSION', '2.0.0' );
+define( 'DLS_VERSION', '2.0.1' );
 
 define('DLS_PLUGIN_URL', plugin_dir_url(__FILE__));
 
