@@ -8,3 +8,5 @@
 6. Check **Publish to WordPress.org** in Actions, confirm any WordPress.org release email, and verify the public download version.
 
 Keep listing icons, banners, and screenshots in `.wordpress-org/`; they sync to SVN `/assets/` with the release. Runtime plugin assets stay in `assets/`. The publisher checks matching versions and merged source, and refuses existing tags or downgrades. Never reuse a release tag.
+
+The **Installable release ZIP** workflow attaches the production plugin ZIP to each stable GitHub release. GitHub’s source archives remain separate. For tags created before this workflow existed, run it manually from the default branch with the existing release tag. It never publishes to WordPress.org or replaces an existing asset.
