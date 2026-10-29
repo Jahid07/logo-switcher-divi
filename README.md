@@ -1,48 +1,33 @@
 # Logo Switcher Divi
-Divi logo switcher will add a new option in your Divi theme customizer> Header And Navigation> Fixed Navigation to upload your logo that will show when you scroll down the page.
 
-#### Note:
+[WordPress.org](https://wordpress.org/plugins/logo-switcher-divi/) · [Issues](https://github.com/Jahid07/logo-switcher-divi/issues)
 
-You can also download  [**Logo Switcher Divi**](https://wordpress.org/plugins/logo-switcher-divi/) plugin from [**WordPress.org**](https://wordpress.org/plugins/logo-switcher-divi/) plugin repository  
+Development source for the existing WordPress.org plugin. The published **2.0.0** package was imported as a separate baseline commit on 2026-10-25. Earlier Git history is preserved. WordPress.org publishing remains disabled during development setup.
 
-> ## Requires
-> [Divi WordPress theme](https://www.elegantthemes.com/)
-> Tested up to Divi 4.0
+## Local development
 
-> ## Features
-1. Add an option to upload your logo at theme customizer 
-1. Work with divi logo height
-1. No coding required
+Prerequisites: Docker Desktop running, Node 24, Composer, PHP CLI, and `zip`/`unzip`.
 
-## Screenshots
- 
-1. Click the Settings button
-![view](https://ps.w.org/logo-switcher-divi/assets/screenshot-1.png?rev=2065212)
+```sh
+composer install
+npm ci
+npx playwright install chromium
+npm run demo:seed
+npm run test:php
+npm run test:e2e
+```
 
-2. Select your logo to click "Select Logo"
-![view](https://ps.w.org/logo-switcher-divi/assets/screenshot-2.png?rev=2065212)
+Open [the development website](http://localhost:8900) and log in with `admin` / `password`. The realistic demo is persistent; browser tests use a separate resettable site on port 8902. PHPUnit also has its own database on port 8901.
 
-3. Upload or select logo form media library
-![view](https://ps.w.org/logo-switcher-divi/assets/screenshot-3.png?rev=2065212)
+See [demo websites and private dependencies](docs/demo.md) for content, refresh behavior, extra profiles and premium integration commands. `npm run env:stop` stops the default development site.
 
-4. Scroll down and check the new logo & publish customizer
-https://ps.w.org/logo-switcher-divi/assets/screenshot-4.png?rev=2065212
+```sh
+composer lint:syntax
+composer lint
+npm run check:release
+npm run build
+```
 
-## Installation 
+The build creates `dist/logo-switcher-divi-2.0.0.zip` with a production-only Composer autoloader and verifies development/private files are excluded. Existing WordPress/PHPCompatibility findings are tracked in `phpcs-baseline.json`; checks block increases. Compatibility claims must reflect actual recorded test versions.
 
-### Through WordPress Dashboard
-
-1. Log in to your WordPress admin panel and go to Plugins -> Add New
-1. Type **Divi logo switcher** in the search box and click on search button.
-1. Find Divi logo switcher plugin.
-1. Then click on Install Now after that activate the plugin.
-1. Click on setting button & add your logo form theme customizer.
-
-### Installing Via FTP
-
-1. Download the plugin to your hardisk.
-1. Unzip.
-1. Upload the "logo-switcher-divi" folder into your plugins directory.
-1. Log in to your WordPress admin panel and click the Plugins menu.
-1. Then activate the plugin.
-1. Click on setting button & add your logo form theme customizer.
+See [testing](docs/testing.md), [contributing](CONTRIBUTING.md), and [release process](docs/releases.md).
