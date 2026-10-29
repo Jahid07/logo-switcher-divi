@@ -3,9 +3,9 @@
 Contributors: md-jahidul-islam
 Tags: Divi Logo, Logo Switcher, Fixed Logo, Divi Scroll Logo, Divi Customize
 Requires at least: 5.0
-Tested up to: 6.8.2
+Tested up to: 7.1
 Requires PHP: 5.6
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ Divi logo switcher will add a new option in your Divi theme customizer> Header A
 
 > Requires
 > [Divi WordPress theme](https://www.elegantthemes.com/)
-> Tested up to Divi 4.26.1
+> Tested with WordPress 7.1.4, Divi 4.27.9, and Divi 5.17.0 using native Divi headers.
 
 = Features =
 1. Add an option to upload your logo at theme customizer 
@@ -24,6 +24,10 @@ Divi logo switcher will add a new option in your Divi theme customizer> Header A
 3. No coding required
 
 = Other Plugins by CoderPlus =
+
+**Data Privacy Manager for WooCommerce (Premium)**
+Data Privacy Manager is a WooCommerce GDPR plugin that helps you process personal data requests and manage customer permissions and privacy choices. Give your team tools to review requests, manage approvals, follow up with customers, and track outcomes. Keep privacy work organized with permission records, staff access controls, and clear steps for customers.
+[View on WooCommerce.com](https://woocommerce.com/products/data-privacy-manager/)
 
 **X Scroll To Top – Responsive**  
 Add a lightweight, customizable scroll-to-top button to your site.  
@@ -73,6 +77,10 @@ No, it doesn't work without divi theme.
 5. This is the final version
 
 == Changelog ==
+
+= 2.0.2 - October 29, 2026 =
+* Tested with WordPress 7.1.4 and native headers in Divi 4.27.9 and Divi 5.17.0.
+* Updated plugin recommendations to include Data Privacy Manager for WooCommerce.
 
 = 2.0.1 - October 29, 2026 =
 - Fix the admin notice callback when Divi is unavailable.
