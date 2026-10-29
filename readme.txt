@@ -5,7 +5,7 @@ Tags: Divi Logo, Logo Switcher, Fixed Logo, Divi Scroll Logo, Divi Customize
 Requires at least: 5.0
 Tested up to: 6.8.2
 Requires PHP: 5.6
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -73,6 +73,11 @@ No, it doesn't work without divi theme.
 5. This is the final version
 
 == Changelog ==
+
+= 2.0.1 - October 29, 2026 =
+- Fix the admin notice callback when Divi is unavailable.
+- Improve logo switching and add automated release packaging.
+
 = 2.0.0 - July 13, 2024 =
 = Restruture plugin files and add autoload
 = Added language support pot file i18n
