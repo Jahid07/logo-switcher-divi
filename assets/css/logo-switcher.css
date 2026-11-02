@@ -1,0 +1,31 @@
+#main-header .logo_container.dls-switcher .main-logo,
+#main-header .logo_container.dls-switcher .second-logo {
+    transition: opacity 300ms ease-in-out;
+}
+#main-header .logo_container.dls-switcher .second-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+#main-header .logo_container.dls-switcher.dls-show-alternate .main-logo {
+    opacity: 0;
+    pointer-events: none;
+}
+#main-header .logo_container.dls-switcher.dls-show-alternate .second-logo {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+#main-header .logo_container.dls-switcher:not(.dls-show-alternate) .second-logo {
+    transition: opacity 300ms ease-in-out, visibility 0s 300ms;
+}
+@media (prefers-reduced-motion: reduce) {
+    #main-header .logo_container.dls-switcher .main-logo,
+    #main-header .logo_container.dls-switcher .second-logo {
+        transition: none !important;
+    }
+}
