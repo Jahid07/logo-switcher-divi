@@ -42,7 +42,8 @@ class Assets{
     {
         if(Customizer::get_dls_option('extra_logo')  != NULL){
 
-            wp_enqueue_script( 'dsl_mainjs', DLS_PLUGIN_URL.'/assets/js/main.js' , 'jquery', DLS_VERSION, true );
+			wp_enqueue_style( 'dsl-logo-switcher', DLS_PLUGIN_URL . '/assets/css/logo-switcher.css', array(), DLS_VERSION . '-' . filemtime( dirname( dirname( __DIR__ ) ) . '/assets/css/logo-switcher.css' ) );
+            wp_enqueue_script( 'dsl_mainjs', DLS_PLUGIN_URL.'/assets/js/main.js' , array( 'jquery' ), DLS_VERSION . '-' . filemtime( dirname( dirname( __DIR__ ) ) . '/assets/js/main.js' ), true );
 
             $logo_id    = Customizer::get_dls_option( 'extra_logo'); // Get attachment form the option table
             $logo       = wp_get_attachment_image_src( $logo_id, 'full'); //et thw attachment array 

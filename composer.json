@@ -20,7 +20,7 @@
     },
     "sort-packages": true,
     "platform": {
-      "php": "7.4.33"
+      "php": "8.0.30"
     },
     "platform-check": false
   },
@@ -30,5 +30,8 @@
     "lint:baseline": "@php scripts/check-phpcs.php --update",
     "lint:syntax": "@php scripts/lint-php.php",
     "test": "phpunit"
+  },
+  "require": {
+    "php": ">=8.0"
   }
 }

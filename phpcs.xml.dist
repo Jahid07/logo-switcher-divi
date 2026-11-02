@@ -6,7 +6,7 @@
     <file>uninstall.php</file>
     <arg name="extensions" value="php"/>
     <arg name="colors"/>
-    <config name="testVersion" value="5.6-"/>
+    <config name="testVersion" value="8.0-"/>
     <rule ref="WordPress"/>
     <rule ref="PHPCompatibilityWP"/>
 </ruleset>

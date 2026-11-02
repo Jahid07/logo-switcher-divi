@@ -1,36 +1,37 @@
+;(function ($) {
+    $(function () {
+        var header = document.getElementById('main-header');
+        var container = header && header.querySelector('.logo_container');
+        if (!container || !dslLogoAttr.dlsLogo || container.classList.contains('dls-switcher')) return;
+        var main = container.querySelector('a');
+        if (!main) return;
+        var originalTabindex = main.getAttribute('tabindex');
+        var ready = false;
+        var alternate = $('<a>', { 'class': 'second-logo', href: dslLogoAttr.homeUrl.trim(), 'aria-hidden': 'true', tabindex: '-1' });
+        var image = $('<img>', { src: dslLogoAttr.dlsLogo.trim(), alt: dslLogoAttr.imgAlt.trim(), id: 'logo', 'data-height-percentage': dslLogoAttr.logoHeight, loading: 'eager' });
+        main.classList.add('main-logo');
+        container.classList.add('dls-switcher');
+        alternate.append($('<span>', { 'class': 'logo_helper' }), document.createTextNode(' '), image).appendTo(container);
 
-;(function($){
-    $(document).ready(function(){        
-        
-        // Add class to main logo if not already added
-        if (!$('.logo_container a').hasClass('main-logo')) {
-            $('.logo_container a').addClass('main-logo');
+        function update() {
+            var switched = ready && header.classList.contains('et-fixed-header');
+            container.classList.toggle('dls-show-alternate', switched);
+            main.setAttribute('aria-hidden', switched ? 'true' : 'false');
+            if (switched) main.setAttribute('tabindex', '-1');
+            else if (originalTabindex === null) main.removeAttribute('tabindex');
+            else main.setAttribute('tabindex', originalTabindex);
+            alternate.attr('aria-hidden', switched ? 'false' : 'true');
+            if (switched) alternate.removeAttr('tabindex');
+            else alternate.attr('tabindex', '-1');
         }
-        
-        // Add second logo if not already present
-        if ($('.logo_container .second-logo').length === 0) {
-            $('.logo_container').append('<a class="second-logo" href="'+ dslLogoAttr.homeUrl +' "><img src="'+ dslLogoAttr.dlsLogo +' " alt=" '+ dslLogoAttr.imgAlt +'" id="logo" data-height-percentage="'+ dslLogoAttr.logoHeight +'" /></a>');
-            $('.second-logo').hide(); // Hide second logo by default
+        function loaded() {
+            if (!image[0].naturalWidth) return;
+            var decoded = image[0].decode ? image[0].decode() : Promise.resolve();
+            decoded.catch(function () {}).then(function () { ready = true; update(); });
         }
-
-        // Function to toggle logos
-        function toggleLogos() {
-            if ($('#main-header').hasClass('et-fixed-header')) {
-                $('.main-logo').hide(); // Hide main logo on scrolling
-                $('.second-logo').show(); // Show second logo on scrolling               
-            } else {
-                $('.main-logo').show(); // Show main logo
-                $('.second-logo').hide(); // Hide second logo on scrolling                
-            }
-        }
-
-        // Initial toggle to set the correct logo visibility
-        toggleLogos();
-
-        // Apply toggle on scroll
-        $(window).on('scroll', function () {
-            toggleLogos();
-        }); 
+        image.on('load', loaded);
+        if (image[0].complete) loaded();
+        new MutationObserver(update).observe(header, { attributes: true, attributeFilter: ['class'] });
+        update();
     });
 })(jQuery);
-

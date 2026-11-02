@@ -4,8 +4,8 @@ Contributors: md-jahidul-islam
 Tags: Divi Logo, Logo Switcher, Fixed Logo, Divi Scroll Logo, Divi Customize
 Requires at least: 5.0
 Tested up to: 7.1
-Requires PHP: 5.6
-Stable tag: 2.0.2
+Requires PHP: 8.0
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,20 +63,49 @@ Installing Via FTP
 
 == Frequently Asked Questions ==
 
-= Does it work without divi theme? =
+= How do I change the Divi logo when scrolling? =
 
-No, it doesn't work without divi theme.
+Go to Appearance → Customize → Header & Navigation → Fixed Navigation Settings. Choose your Fixed Navigation Logo, then click Publish. Your alternate logo appears when Divi activates its fixed header; your normal logo returns when you scroll back to the top.
 
- 
+= Where do I set my normal Divi logo? =
+
+Keep your normal logo in Divi's main logo setting under Divi → Theme Options. This plugin adds a separate image for the fixed navigation header.
+
+= Does Logo Switcher work with Divi 4 and Divi 5? =
+
+The logo switch and fade have been checked with Divi 4.27.9 and Divi 5.17.0 using native Divi headers. These checks do not cover every custom header layout or Theme Builder module.
+
+= Why is my alternate logo not showing when I scroll? =
+
+Check that Divi's Fixed Navigation Bar is enabled, an image is selected under Fixed Navigation Logo, and your Customizer changes are published. The image must load successfully before the plugin switches logos. Clear your site or browser cache after changing settings. Custom Theme Builder headers may use a different structure from the native Divi header.
+
+= Can I use a transparent logo image? =
+
+Yes. A transparent PNG can work well over your header background. Choose an image with enough contrast for the fixed header, and trim unnecessary transparent margins so the logo aligns cleanly.
+
+= Can visitors who prefer reduced motion use the logo switcher? =
+
+Yes. The logo normally changes with a short fade. When a visitor enables reduced motion in their system or browser settings, the fade is disabled and the logo changes immediately.
+
+= Does this plugin work without Divi? =
+
+No. It requires the Divi theme and integrates with its native header. It does not add a logo switcher to other themes.
+
 == Screenshots ==
- 
-1. Click the Settings button
-2. Select your logo to click "Select Logo"
-3. Upload or select logo form media library
-4. Scroll down and check the new logo & publish customizer 
-5. This is the final version
+
+1. Normal and fixed-header logos before and after scrolling, with a smooth fade between them.
+2. Choose your alternate logo in Appearance → Customize → Header & Navigation → Fixed Navigation Settings, then click Publish.
 
 == Changelog ==
+
+= 2.1.1 =
+* Enjoy a smoother logo change with a gentle fade when the Divi fixed header appears or disappears.
+* Keep both logos aligned during the transition.
+* Wait for the alternate logo to load before switching, avoiding a blank logo.
+* Respect visitors' reduced-motion preferences and keep the hidden logo out of keyboard navigation.
+* Updated screenshots show the logo switch and where to choose your fixed navigation logo.
+* Refresh the animated plugin icon and banner.
+* Requires PHP 8.0 or later.
 
 = 2.0.2 - October 29, 2026 =
 * Tested with WordPress 7.1.4 and native headers in Divi 4.27.9 and Divi 5.17.0.

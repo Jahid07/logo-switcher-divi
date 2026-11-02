@@ -24,4 +24,11 @@ test('@premium Divi switches the configured logo on scroll', async ({ page }) =>
   await page.evaluate(() => window.scrollTo(0, 1000));
   await expect(page.locator('.second-logo img')).toBeVisible();
   await expect(page.locator('.second-logo img')).toHaveAttribute('src', /harbor-compact/);
+  await expect(page.locator('.second-logo')).toHaveCSS('opacity', '1');
+  await expect(page.locator('.main-logo')).toHaveAttribute('tabindex', '-1');
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await expect(page.locator('.main-logo')).toHaveCSS('opacity', '1');
+  await expect(page.locator('.second-logo')).toHaveAttribute('tabindex', '-1');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(page.locator('.second-logo')).toHaveCSS('transition-duration', '0s');
 });
